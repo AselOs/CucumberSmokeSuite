@@ -16,10 +16,13 @@ public class EditingEvent {
 
     @When("User creates an event for tomorrow")
     public void user_creates_an_event_for_tomorrow() throws InterruptedException {
-        Driver.getDriver().findElement(By.xpath("(//td[@data-date='"+ LocalDate.now().plusDays(1).toString()+"'])[1]")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
+        WebElement field =  Driver.getDriver().findElement(By.xpath("(//td[@data-date='"+ LocalDate.now().plusDays(1).toString()+"'])[1]"));
+        Actions action = new Actions(Driver.getDriver());
+        action.moveToElement(field).click().perform();
+        Thread.sleep(2000);
         cp.createEventInput.sendKeys("Scrum meeting");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         cp.createButton.click();
     }
 
